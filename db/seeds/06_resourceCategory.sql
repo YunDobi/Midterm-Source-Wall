@@ -1,0 +1,1 @@
+INSERT INTO resourcescategories (resource_id, category_id) VALUES (1,1);
