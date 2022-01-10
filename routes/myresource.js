@@ -7,6 +7,7 @@ const resource = (db) => {
       .then((response) => {
         res.json(response.rows);
       });
+      //res.render("my_resources");
   });
   return router;
 };
