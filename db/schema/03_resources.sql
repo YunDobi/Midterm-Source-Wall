@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS resources CASCADE;
+
+CREATE TABLE resources (
+id SERIAL PRIMARY KEY,
+user_id INTEGER REFERENCES users(id) on DELETE CASCADE,
+url VARCHAR(255),
+title VARCHAR(255),
+description TEXT
+);
