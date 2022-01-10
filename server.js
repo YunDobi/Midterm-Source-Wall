@@ -38,7 +38,7 @@ app.use(express.static("public"));
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
-const categoryRoute = require("./routes/catagory");
+const categoryRoute = require("./routes/category");
 //const commentsRoute = require("./routes/comments");
 const resourecesRoute = require("./routes/resources");
 const myresourcesRoute = require('./routes/myresource');
