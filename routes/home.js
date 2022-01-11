@@ -11,13 +11,7 @@ const router  = express.Router();
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
-
-    // db.query('SELECT * FROM resources;')
-    //   .then((response) => {
-    //     res.json(response.rows);
-    //   });
-
-    res.render("home");
+    res.redirect("/resources");
   });
 
   return router;
