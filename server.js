@@ -38,27 +38,24 @@ app.use(express.static("public"));
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
-const categoryRoute = require("./routes/catagoty");
-const commentsRoute = require("./routes/comments");
+const categoryRoute = require("./routes/category");
+//const commentsRoute = require("./routes/comments");
 const resourecesRoute = require("./routes/resources");
 const myresourcesRoute = require('./routes/myresource');
+const searchRoute = require("./routes/search");
+const profileRoute = require("./routes/profile");
+const homeRoute = require("./routes/home");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use('/comments', commentsRoute(db));
-app.use("/api/users", usersRoutes(db));
+//app.use('/comments', commentsRoute(db)); // We don't have a comments page, it should be used along resource
+app.use("/users", usersRoutes(db));
 app.use("/category", categoryRoute(db));
 app.use("/resources", resourecesRoute(db));
 app.use("/myresource", myresourcesRoute(db));
-// Note: mount other resources here, using the same pattern above
-
-// Home page
-// Warning: avoid creating more routes in this file!
-// Separate them into separate routes files (see above).
-
-app.get("/", (req, res) => {
-  res.render("index");
-});
+app.use("/search", searchRoute);
+app.use("/profile", profileRoute);
+app.use("/", homeRoute(db));
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

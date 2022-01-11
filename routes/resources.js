@@ -11,10 +11,11 @@ const resources = (db) => {
         res.json(response.rows);
       });
   });
-  //go to the new route to fill in the inputs *requrie the new page with input.ejs
-  router.get("/new", (req, res) => {
+
+  router.get('/new', (req, res) => {
     res.render("new_resource");
   });
+
 
   //create the resources with user typed, and redirct to the all resoureces
   router.post('/new', (req, res) => {
@@ -25,13 +26,6 @@ const resources = (db) => {
       });
   });
 
-  //search the resources by title. However, not sure about how the input will be req.
-  router.get('/search', (req, res) => {
-    db.query('SELECT * from resources Join resourcescategories on resources.id = resource_id WHERE title = $1;', ['testing'])
-      .then((response) => {
-        res.json(response.rows);
-      });
-  });
   //see each resource one by one
   router.get('/:id', (req, res) => {
     console.log(req.params.id);
