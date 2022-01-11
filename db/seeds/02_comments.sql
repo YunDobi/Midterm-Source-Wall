@@ -1,1 +1,0 @@
-INSERT INTO comments (comments, user_id) VALUES ('THIS IS COMMENTS', 1);
