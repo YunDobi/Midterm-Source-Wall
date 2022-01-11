@@ -53,8 +53,8 @@ app.use("/users", usersRoutes(db));
 app.use("/category", categoryRoute(db));
 app.use("/resources", resourecesRoute(db));
 app.use("/myresource", myresourcesRoute(db));
-app.use("/search", searchRoute);
-app.use("/profile", profileRoute);
+app.use("/search", searchRoute(db));
+app.use("/profile", profileRoute(db));
 app.use("/", homeRoute(db));
 
 app.listen(PORT, () => {
