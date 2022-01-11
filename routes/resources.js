@@ -18,7 +18,6 @@ const resources = (db) => {
 
   //create the resources with user typed, and redirct to the all resoureces
   router.post('/new', (req, res) => {
-    console.log("+++++", req.body);
     const title = req.body.title;
     const url = req.body.url;
     const description = req.body.description;
