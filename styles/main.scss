@@ -18,33 +18,3 @@ main {
 .pageheading {
   margin-top: 40px;
 }
-
-
-.topBody{
-  display: flex;
-  justify-content: space-between;
-  padding: 0 10px;
-
-}
-.topBth {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-};
-
-.container {
-  margin: 50px;
-  width: 180px;
-  height: 150px;
-  border: 1px solid black;
-}
-
-.urlText {
-  width: 150px;
-  align-items: center;
-  justify-self: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
