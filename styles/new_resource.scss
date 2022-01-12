@@ -1,0 +1,20 @@
+main {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background: whitesmoke;
+}
+@media (min-width: 1000px) {
+  .container{
+      max-width: 1000px;
+  }
+}
+body {
+  background: whitesmoke;
+}
+
+.pageheading {
+  margin-top: 40px;
+}

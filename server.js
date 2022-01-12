@@ -39,7 +39,7 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const categoryRoute = require("./routes/category");
-//const commentsRoute = require("./routes/comments");
+// const commentsRoute = require("./routes/comments");
 const resourecesRoute = require("./routes/resources");
 const myresourcesRoute = require('./routes/myresource');
 const searchRoute = require("./routes/search");
@@ -48,7 +48,7 @@ const homeRoute = require("./routes/home");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-//app.use('/comments', commentsRoute(db)); // We don't have a comments page, it should be used along resource
+// app.use('/comments', commentsRoute(db));
 app.use("/users", usersRoutes(db));
 app.use("/category", categoryRoute(db));
 app.use("/resources", resourecesRoute(db));
