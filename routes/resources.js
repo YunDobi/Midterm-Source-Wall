@@ -41,7 +41,7 @@ const resources = (db) => {
 
         db.query('SELECT * FROM comments WHERE resource_id = $1;', [req.params.id])
           .then((response) => {
-            const comments = response.rows;
+            const comments = response.rows[0];
             // res.json({ resource, comments });
 
             db.query('SELECT likes, rating from feedbacks JOIN resources ON resources.id = resource_id WHERE resource_id = $1;', [req.params.id])
