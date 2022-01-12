@@ -25,6 +25,12 @@
 		},
 		{
 			"path": "../../w3/d1/tinyapp"
+		},
+		{
+			"path": "../../w4/tweeter"
+		},
+		{
+			"path": "../../lhl-midterm-master"
 		}
 	],
 	"settings": {

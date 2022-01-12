@@ -4,3 +4,23 @@ body,
 html {
   margin: 0;
 }
+
+.card-title {
+  font-family: fantasy;
+  font-size: 30px;
+  text-decoration: underline;
+}
+.card-text{
+font-family: fantasy;
+padding: 20px 10px;
+border:1px solid #F3F7FF;
+border-radius: 20px;
+
+}
+
+.images{
+  border-radius: 30px;
+  border: 1px solid #F3F7FF;
+  margin-bottom: 20px;
+ 
+}

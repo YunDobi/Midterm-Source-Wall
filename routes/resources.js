@@ -48,9 +48,9 @@ const resources = (db) => {
               .then((response) => {
                 const likeRating = response.rows[0];
                 const allSources = {
-                  resource: JSON.stringify({resource}),
+                  resource: JSON.stringify(resource.title),
                   comment: JSON.stringify({comments}),
-                  rating :JSON.stringify({likeRating})
+                  rating :JSON.stringify(likeRating)
                 };
                 res.render('resourceID', allSources);
               });

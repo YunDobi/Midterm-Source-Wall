@@ -1,0 +1,127 @@
+
+.container{
+  position: absolute;
+  background-image: linear-gradient(
+    253.58deg, #2fc0ee 1.55%, #f17bd0 95.8%); 
+    border-radius: 15px;
+    width: auto;
+    height: auto;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.containerID{
+ 
+  background-image: transparent; 
+    border-radius: 15px;
+    width: auto;
+    height: auto;
+    padding: 30px;
+    display: flex;
+    grid-template-rows: auto auto;
+}
+.commentcontainer{
+  background-image: transparent ; 
+  border: 2px solid rgb(240, 231, 231);
+    border-radius: 15px;
+    width: auto;
+    height: auto;
+    padding: 20px;
+    display: flex;
+    grid-template-rows: auto auto;
+}
+
+
+textarea{
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 15px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+  margin-bottom: 10px;
+}
+.commentbutton{
+  float: right;
+  border-radius: 30px;
+  background:#2fc0ee;
+  border: 0.5px solid white;
+  font-family: fantasy;
+
+}
+.commentbutton:hover{
+  box-shadow: 1px 2px rgba(0, 0, 0, 0.075);
+  background-color: #208ad1;
+  border: 0.5px solid #a3c5db;
+}
+
+.field{
+  border: 2px solid rgb(240, 231, 231);
+  padding: 40px 20px;
+  border-radius: 15px;
+}
+
+
+
+
+// Star Rating Css
+fieldset{
+  float: right;
+}
+
+.rating {
+  --star-size: 2;  /* use CSS variables to calculate dependent dimensions later */
+  padding: 1px 12px;  /* to prevent flicker when mousing over padding */
+  border: 2px solid white; 
+  background-color: white;
+  border-radius: 20px; /* to prevent flicker when mousing over border */
+  unicode-bidi: bidi-override; direction: rtl;  /* for CSS-only style change on hover */
+  text-align: left;  /* revert the RTL direction */
+  user-select: none;  /* disable mouse/touch selection */
+  font-size: 2em;  /* fallback - IE doesn't support CSS variables */
+  font-size: calc(var(--star-size) * 1em);  /* because `var(--star-size)em` would be too good to be true */
+  cursor: pointer;
+  /* disable touch feedback on cursor: pointer - http://stackoverflow.com/q/25704650/1269037 */
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+  margin-bottom: 1em;
+}
+/* the stars */
+.rating > label {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;  /* magic number to overlap the radio buttons on top of the stars */
+  width: calc(var(--star-size) / 3 * 1.1em);
+}
+.rating > *:hover,
+.rating > *:hover ~ label,
+.rating:not(:hover) > input:checked ~ label {
+  color: transparent;  /* reveal the contour/white star from the HTML markup */
+  cursor: inherit;  /* avoid a cursor transition from arrow/pointer to text selection */
+}
+.rating > *:hover:before,
+.rating > *:hover ~ label:before,
+.rating:not(:hover) > input:checked ~ label:before {
+  content: "★";
+  position: absolute;
+  color: gold;
+}
+.rating > input {
+  position: relative;
+  transform: scale(3);  /* make the radio buttons big; they don't inherit font-size */
+  transform: scale(var(--star-size));
+  /* the magic numbers below correlate with the font-size */
+  top: -0.5em;  /* margin-top doesn't work */
+  top: calc(var(--star-size) / 6 * -1em);
+  margin-left: -2.5em;  /* overlap the radio buttons exactly under the stars */
+  margin-left: calc(var(--star-size) / 6 * -5em);
+  z-index: 2;  /* bring the button above the stars so it captures touches/clicks */
+  opacity: 0;  /* comment to see where the radio buttons are */
+  font-size: initial; /* reset to default */
+}
+form.amp-form-submit-error [submit-error] {
+  color: red;
+}

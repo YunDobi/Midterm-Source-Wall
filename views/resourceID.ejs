@@ -7,7 +7,13 @@
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/comment.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+
+  <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+  <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
@@ -17,11 +23,90 @@
   <%- include('partials/header') %>
   <h1>RESOURCE ID</h1>
   <main>  
-    <div>
-      <ul><%= resource %></ul>
-      <ul><%= comment %></ul>
-      <ul><%= rating %></ul>
-  </div>
+
+    <div class="container">
+    <div class="containerID">
+      <br></br>
+      <div class="cards">
+        <img class="images" src="https://www.w3schools.com/howto/img_avatar.png">
+        <div class="card-body">
+
+
+
+
+          <form id="rating" method="post" action="https://amp.dev/documentation/examples/interactivity-dynamic-content/star_rating/set" target="_blank"></form>
+            <fieldset class="rating">
+              <input name="rating" type="radio" id="rating5" value="5" on="change:rating.submit">
+              <label for="rating5" title="5 stars">☆</label>
+          
+              <input name="rating" type="radio" id="rating4" value="4" on="change:rating.submit">
+              <label for="rating4" title="4 stars">☆</label>
+          
+              <input name="rating" type="radio" id="rating3" value="3" on="change:rating.submit">
+              <label for="rating3" title="3 stars">☆</label>
+          
+              <input name="rating" type="radio" id="rating2" value="2" on="change:rating.submit">
+              <label for="rating2" title="2 stars">☆</label>
+          
+              <input name="rating" type="radio" id="rating1" value="1" on="change:rating.submit">
+              <label for="rating1" title="1 stars">☆</label>
+            </fieldset>
+           
+              <template type="amp-mustache">
+                <p>Thanks for rating {{rating.value}} star(s)!</p>
+              </template>
+
+          </form>
+          <br></br>
+
+
+          <h5 class="card-title"><%= resource %></h5>
+          <div class="toggle">
+          <p class="card-text"><%= rating %></p>
+
+
+
+
+            <!-- <p>Rating: <span class="rating-1" type="radio>⭐</span><span class="rating-2">⭐</span><span class="rating-3">⭐</span><span class="rating-4">⭐</span><span class="rating-5">⭐</span></p>
+             -->
+             
+
+            
+          </div>
+        </div>
+      </div>
+    
+    
+
+
+      </div>
+      <div class="commentcontainer">
+        <br></br>
+        <div class="cards">
+          <form class="field">
+          <textarea id="commenttext" name="w3review" rows="4" cols="50">
+            At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
+            </textarea>
+            <button class="commentbutton">Comment</button>
+          </form>
+          <br></br>
+          <div class="card-body">
+            <h5 class="comment-text"><%= comment %></h5>
+            <br>
+            <div class="toggle">
+              <p class="comment-text"><%= comment %></p>
+              
+            </div>
+          </div>
+        </div>
+      
+      
+  
+
+        </div>
+
+      </div>
+
   </main>
   
   
