@@ -7,11 +7,15 @@ const resources = (db) => {
 
   //search the resources by title. However, not sure about how the input will be req.
   router.get('/', (req, res) => {
-    db.query('SELECT * from resources Join resourcescategories on resources.id = resource_id WHERE title = $1;', ['testing'])
+  
+    db.query('SELECT * from resources left  join resourcescategories on resources.id = resource_id WHERE title LIKE $1;', [`%${req.query.searchtitle}%`])
       .then((response) => {
-        res.json(response.rows);
+        const searchResources = response.rows;
+        console.log(searchResources);
+        res.render('search',{urls:searchResources});
       });
-      //res.render("search")
+      
+    //res.render("search");
   });
 
   return router;
