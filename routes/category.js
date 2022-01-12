@@ -20,10 +20,10 @@ module.exports = (db) => {
   });
 
   router.get('/:catid', (req, res) => {
-    db.query('SELECT * FROM resources WHERE category_id = $1;', [req.params.catid])
+    db.query('SELECT * FROM categories WHERE id = $1;', [req.params.catid])
       .then((response)=> {
-        res.json(response.rows[0]);
-        //res.render("category")
+        //res.json(response.rows[0]);
+        res.render("category")
       });
   });
 
