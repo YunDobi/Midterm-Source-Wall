@@ -1,36 +1,7 @@
 {
 	"folders": [
 		{
-			"name": "language-learning-application",
-			"path": "../../../../Documents/Work Related/language-learning-application"
-		},
-		{
-			"name": "language-learning-application-main",
-			"path": "../../../../Documents/Work Related/language-learning-application-main"
-		},
-		{
 			"path": ".."
-		},
-		{
-			"path": "../../../../Documents/Personal Doc/clintonomamohwo"
-		},
-		{
-			"path": "../../resource-wall--master"
-		},
-		{
-			"path": "../../../../Downloads/resource-wall-project-master"
-		},
-		{
-			"path": "../../w5/LightBnB"
-		},
-		{
-			"path": "../../w3/d1/tinyapp"
-		},
-		{
-			"path": "../../w4/tweeter"
-		},
-		{
-			"path": "../../lhl-midterm-master"
 		}
 	],
 	"settings": {

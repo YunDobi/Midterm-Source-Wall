@@ -9,8 +9,14 @@ const resources = (db) => {
     db.query('SELECT * FROM resources;')
       .then((response) => {
         const allResources = response.rows;
-          
-        res.render('home', {urls: allResources});
+        db.query(`SELECT * FROM categories WHERE user_id = 1`)
+        .then((catResponse) => {
+          console.log(catResponse.rows)
+          res.render('home', {
+            categories: catResponse.rows,
+            urls: allResources
+          });
+        });
       });
   });
 
@@ -30,10 +36,27 @@ const resources = (db) => {
         res.redirect('/resources');
       });
   });
+  //comments
+  router.post('/:id/comments', (req, res) => {
+    console.log("++++++", req.body);
+    db.query('INSERT INTO comments (comments, user_id, resource_id) VALUES ($1,$2,$3)',[req.body.inputBody, req.params.user_id, req.params.id])
+      .then(() => {
+        res.redirect('/');
+      });
+  });
+
+  //like
+  router.post('/like', (req, res) => {
+    db.query('UPDATE feedbacks SET likes = $1 where $2;' , [req.params.likes, req.params.id])
+      .then(() => {
+        res.redirect('/response/:id');
+      });
+  });
+
+  //rating
 
   //see each resource one by one
   router.get('/:id', (req, res) => {
-    console.log(req.params.id);
     db.query('SELECT * FROM resources WHERE id = $1;', [req.params.id])
       .then((response)=> {
         // res.json(response.rows[0]);
@@ -49,14 +72,18 @@ const resources = (db) => {
                 const likeRating = response.rows[0];
                 const allSources = {
                   resource: JSON.stringify(resource.title),
-                  comment: JSON.stringify({comments}),
-                  rating :JSON.stringify(likeRating)
+                  comment: JSON.stringify(comments),
+                  like :JSON.stringify(likeRating.likes),
+                  rating: JSON.stringify(likeRating.rating),
+                  id: req.params.id
                 };
                 res.render('resourceID', allSources);
               });
           });
       });
   });
+
+  //
 
   return router;
 };
