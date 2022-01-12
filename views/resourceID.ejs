@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/comment.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/resourceID.css" type="text/css" />
 
 
   <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
@@ -23,15 +24,12 @@
   <%- include('partials/header') %>
   <h1>RESOURCE ID</h1>
   <main>  
-
     <div class="container">
     <div class="containerID">
       <br></br>
       <div class="cards">
         <img class="images" src="https://www.w3schools.com/howto/img_avatar.png">
         <div class="card-body">
-
-
 
 
           <form id="rating" method="post" action="https://amp.dev/documentation/examples/interactivity-dynamic-content/star_rating/set" target="_blank"></form>
@@ -83,11 +81,11 @@
       <div class="commentcontainer">
         <br></br>
         <div class="cards">
-          <form class="field">
-          <textarea id="commenttext" name="w3review" rows="4" cols="50">
+          <form action="/resources/<%= id %>/comments" method="post" class="field">
+          <textarea id="commenttext" name="inputBody" rows="4" cols="50">
             At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
             </textarea>
-            <button class="commentbutton">Comment</button>
+            <button type="submit" class="commentbutton">submit</button>
           </form>
           <br></br>
           <div class="card-body">
