@@ -9,8 +9,14 @@ const resources = (db) => {
     db.query('SELECT * FROM resources;')
       .then((response) => {
         const allResources = response.rows;
-          
-        res.render('home', {urls: allResources});
+        db.query(`SELECT * FROM categories WHERE user_id = 1`)
+        .then((catResponse) => {
+          console.log(catResponse.rows)
+          res.render('home', {
+            categories: catResponse.rows,
+            urls: allResources
+          });
+        });
       });
   });
 

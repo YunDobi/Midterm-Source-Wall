@@ -50,7 +50,7 @@ const homeRoute = require("./routes/home");
 // Note: Feel free to replace the example routes below with your own
 // app.use('/comments', commentsRoute(db));
 app.use("/users", usersRoutes(db));
-app.use("/category", categoryRoute(db));
+app.use("/categories", categoryRoute(db));
 app.use("/resources", resourecesRoute(db));
 app.use("/myresource", myresourcesRoute(db));
 app.use("/search", searchRoute(db));

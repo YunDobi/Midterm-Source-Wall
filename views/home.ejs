@@ -4,22 +4,22 @@
 <head>
   <title>Resources</title>
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/search.css" type="text/css" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">        
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
   <link rel="stylesheet" href="/https://fonts.googleapis.com/css?family=Open+Sans" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
-
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
 <body>
+
   <header>
     <%- include('partials/header') %>
   </header>
@@ -29,7 +29,7 @@
     <br></br>
     <div>
       <div class="search">
-        
+
          <form action="/search/" method="GET">
           <input type="text" class="searchTerm" name="searchtitle" placeholder="What are you looking for?">
          <button type="submit" class="searchButton">🔎<i class="fa-regular fa-magnifying-glass"></i></button>
@@ -41,7 +41,7 @@
       <br></br>
       <div class="container">
         <br></br>
-        <% for(let url of urls) { %> 
+        <% for(let url of urls) { %>
         <div class="cards">
           <a href="/resources/<%= url.id %>">
           <img class="images" src="https://www.w3schools.com/howto/img_avatar.png">
@@ -55,15 +55,22 @@
           </div>
         </div>
         <% } %>
-  
+
 
         </div>
+
         <br></br>
       </div>
-
-    
-
    </div>
+
+
+<div class="vh-100 d-flex align-items-center justify-content-center" style="width: 200px;">
+  <div class="w-75">
+    <%- include('partials/categories', { categories: categories}) %>
+   </div>
+</div>
+
+
   </main>
 
 </body>
