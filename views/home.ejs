@@ -6,24 +6,38 @@
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/resources.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+  <%- include('partials/header') %>
 </head>
 
 
 <body>
-  <div>
+  <div class="topBody">
     <h1>Homepage</h1>
-    <% for(let url of urls) { %>
-      <ul><%= url.url %></ul>
-    <% } %>
-    <form action="resources/new" method="get">
-      <button type="submit" class="create_bth">submit</button>
+    <form action="resources/new" method="get" class="topBth">
+      <button type="submit" class="create_bth">NEW</button>
     </form>
   </div>
+  
+  <main>
+    <% for(let url of urls) { %>
+      <div class="container">
+        <div>
+          <a href="/resources/<%= url.id %>">
+          <p class="urlText"><%= url.url %></p></a>
+        </div>
+        <div>
+          <p class="urlText"><%= url.description %></p>
+        </div>
+        
+      </div>
+    <% } %>
+    
+  </main>
        
 </body>
 
