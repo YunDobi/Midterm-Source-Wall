@@ -3,12 +3,13 @@ const router  = express.Router();
 
 const comments = (db) => {
   // GET /comments/
-  router.get('/', (req, res) => {
-    db.query('SELECT * FROM comments;')
-      .then((response) => {
-        res.json(response.rows);
-      });
-  });
+  // router.get('/', (req, res) => {
+  //   console.log("received")
+  //   db.query('INSERT INTO comments (comment, user_id, resource_id) VALUE ($1,$2,$3)',[req.params],[])
+  //     .then(() => {
+  //       res.redirect('resource/');
+  //     });
+  // });
   return router;
 };
 
