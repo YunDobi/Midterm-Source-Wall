@@ -13,16 +13,13 @@
   <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
-
 <body>
+  <h1>RESOURCE ID</h1>
   <div>
-    <h1>Homepage</h1>
-    <% for(let url of urls) { %>
-      <ul><%= url.url %></ul>
-    <% } %>
-    <form action="resources/new" method="get">
-      <button type="submit" class="create_bth">submit</button>
-    </form>
+      <ul><%= resource %></ul>
+      <ul><%= comment %></ul>
+      <ul><%= rating %></ul>
+
   </div>
        
 </body>

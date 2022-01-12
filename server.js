@@ -57,6 +57,7 @@ app.use("/search", searchRoute(db));
 app.use("/profile", profileRoute(db));
 app.use("/", homeRoute(db));
 
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });

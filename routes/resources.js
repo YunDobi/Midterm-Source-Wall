@@ -8,7 +8,9 @@ const resources = (db) => {
   router.get('/', (req, res) => {
     db.query('SELECT * FROM resources;')
       .then((response) => {
-        res.json(response.rows);
+        const allResources = response.rows;
+          
+        res.render('home', {urls: allResources});
       });
   });
 
@@ -37,16 +39,20 @@ const resources = (db) => {
         // res.json(response.rows[0]);
         const resource = response.rows[0];
 
-        db.query('SELECT * FROM comments;')
+        db.query('SELECT * FROM comments WHERE resource_id = $1;', [req.params.id])
           .then((response) => {
             const comments = response.rows;
             // res.json({ resource, comments });
 
-            db.query('SELECT likes, rating from feedbacks JOIN resources ON resources.id = resource_id;')
+            db.query('SELECT likes, rating from feedbacks JOIN resources ON resources.id = resource_id WHERE resource_id = $1;', [req.params.id])
               .then((response) => {
                 const likeRating = response.rows[0];
-
-                res.json({resource, comments, likeRating});
+                const allSources = {
+                  resource: JSON.stringify({resource}),
+                  comment: JSON.stringify({comments}),
+                  rating :JSON.stringify({likeRating})
+                };
+                res.render('resourceID', allSources);
               });
           });
       });
