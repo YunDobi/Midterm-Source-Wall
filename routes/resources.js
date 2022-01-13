@@ -34,7 +34,7 @@ const resources = (db) => {
       db.query('INSERT INTO resources (url, title, description) VALUES ($1, $2, $3);',[url,title, description])
         .then(() => {
           // res.json(response.rows);
-          res.redirect('/resources');
+          res.redirect(`/resources/${req.params.id}`);
         });
     });
     //comments
@@ -42,7 +42,7 @@ const resources = (db) => {
       console.log("++++++", req.body);
       db.query('INSERT INTO comments (comments, user_id, resource_id) VALUES ($1,$2,$3)',[req.body.inputBody, 1, req.params.id])
         .then(() => {
-          res.redirect('/');
+          res.redirect(`/resources/${req.params.id}`);
         });
     });
 
@@ -51,7 +51,7 @@ const resources = (db) => {
 
       db.query('UPDATE feedbacks SET likes = $1 where resource_id = $2;' , [Number(req.body.bth) + 1, req.params.id])
         .then(() => {
-          res.redirect('/');
+          res.redirect(`/resources/${req.params.id}`);
         });
     });
 
