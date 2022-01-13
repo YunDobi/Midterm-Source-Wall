@@ -63,7 +63,25 @@ textarea{
   padding: 40px 20px;
   border-radius: 15px;
 }
+.card-title {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+}
 
+#feedback {
+  font-size: 20px;
+}
+
+#feedback-rating {
+  display: flex;
+  flex-direction: column;
+}
+
+#comment-body {
+  border: 1px solid black;
+  margin: 15px;
+}
 
 
 
