@@ -26,6 +26,7 @@ module.exports = (db) => {
     WHERE resourcescategories.category_id = ${req.params.catid};`)
       .then((response) => {
         const allResources = response.rows;
+
         const user_id = req.session.user_id;
         db.query(`SELECT * FROM categories WHERE user_id = ${user_id}`)
         .then((catResponse) => {
@@ -34,9 +35,16 @@ module.exports = (db) => {
             categories: catResponse.rows,
             urls: allResources
           });
-        });
       });
   });
-
+  
+  router.post('/', (req, res) => {
+    console.log(req.params.id)
+    db.query('INSERT INTO categories (name, description, user_id) VALUES ($1,$2,$3)',[req.body.name_bth, 'This is description', 1])
+    .then(() => {
+      res.redirect('/')
+    });
+  });
+    
   return router;
 };

@@ -9,6 +9,7 @@ const resources = (db) => {
     db.query('SELECT * FROM resources;')
       .then((response) => {
         const allResources = response.rows;
+
         const user_id = req.session.user_id;
         db.query(`SELECT * FROM categories WHERE user_id = ${user_id}`)
         .then((catResponse) => {
@@ -17,7 +18,6 @@ const resources = (db) => {
             categories: catResponse.rows,
             urls: allResources
           });
-        });
       });
   });
 
@@ -83,25 +83,29 @@ const resources = (db) => {
               .then((response)=>{
                 const avgRating = response.rows[0].avg;
 
+                db.query('SELECT name FROM categories;')
+                  .then((response)=> {
+                    const categoryName = response.rows;
 
-                db.query('SELECT likes, rating from feedbacks JOIN resources ON resources.id = resource_id WHERE resource_id = $1;', [req.params.id])
-                  .then((response) => {
-                    // console.log("++++",comments)
-                    const likeRating = response.rows[0];
-                    const allSources = {
-                      title: JSON.stringify(resource.title),
-                      description: JSON.stringify(resource.description),
-                      comments: comments,
-                      username: JSON.stringify(comments.username),
-                      like :JSON.stringify(likeRating.likes),
-                      rating: Math.round(avgRating),
-                      id: req.params.id,
-                    };
-                    console.log("allSources",allSources)
-                    res.render('resourceID', allSources);
+                 
+                    db.query('SELECT likes, rating from feedbacks JOIN resources ON resources.id = resource_id WHERE resource_id = $1;', [req.params.id])
+                      .then((response) => {
+                        // console.log("++++",comments)
+                        const likeRating = response.rows[0];
+                        const allSources = {
+                          title: JSON.stringify(resource.title),
+                          description: JSON.stringify(resource.description),
+                          comments: comments,
+                          username: JSON.stringify(comments.username),
+                          like :JSON.stringify(likeRating.likes),
+                          rating: Math.round(avgRating),
+                          id: req.params.id,
+                          name: categoryName
+                        };
+                        res.render('resourceID', allSources);
+                      });
                   });
               });
-
 
           });
       });
