@@ -30,7 +30,8 @@ const queryUser = function(db, userid, callback) {
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    queryUser(db, 1, (user, error) => {
+    const user_id = req.session.user_id;
+    queryUser(db, user_id, (user, error) => {
         renderProfile(user, res, error)
       })
   });

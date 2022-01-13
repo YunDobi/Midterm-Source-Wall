@@ -9,7 +9,8 @@ const resources = (db) => {
     db.query('SELECT * FROM resources;')
       .then((response) => {
         const allResources = response.rows;
-        db.query(`SELECT * FROM categories WHERE user_id = 1`)
+        const user_id = req.session.user_id;
+        db.query(`SELECT * FROM categories WHERE user_id = ${user_id}`)
         .then((catResponse) => {
           console.log(catResponse.rows)
           res.render('home', {
@@ -101,7 +102,7 @@ const resources = (db) => {
                   });
               });
 
-            
+
           });
       });
   });

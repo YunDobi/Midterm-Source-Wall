@@ -11,7 +11,8 @@ const resources = (db) => {
     db.query('SELECT * from resources left  join resourcescategories on resources.id = resource_id WHERE title LIKE $1;', [`%${req.query.searchtitle}%`])
       .then((response) => {
         const searchResources = response.rows;
-        db.query(`SELECT * FROM categories WHERE user_id = 1`)
+        const user_id = req.session.user_id;
+        db.query(`SELECT * FROM categories WHERE user_id = ${user_id}`)
         .then((catResponse) => {
           //console.log(searchResources.rows)
           res.render('search', {
