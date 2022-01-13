@@ -20,10 +20,21 @@ module.exports = (db) => {
   });
 
   router.get('/:catid', (req, res) => {
-    db.query('SELECT * FROM categories WHERE id = $1;', [req.params.catid])
-      .then((response)=> {
-        //res.json(response.rows[0]);
-        res.render("category")
+    db.query(`SELECT resources.id, resources.user_id, resources.url, resources.title, resources.description,
+    resourcescategories.resource_id, resourcescategories.category_id FROM resources
+    INNER JOIN resourcescategories ON resources.id = resourcescategories.resource_id
+    WHERE resourcescategories.category_id = ${req.params.catid};`)
+      .then((response) => {
+        const allResources = response.rows;
+        const user_id = req.session.user_id;
+        db.query(`SELECT * FROM categories WHERE user_id = ${user_id}`)
+        .then((catResponse) => {
+          //console.log(catResponse.rows)
+          res.render('category', {
+            categories: catResponse.rows,
+            urls: allResources
+          });
+        });
       });
   });
 

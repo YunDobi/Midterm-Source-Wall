@@ -18,8 +18,9 @@
 
 <body>
 
+  <%- include('partials/header') %>
+
   <div class="container main">
-      <%- include('partials/header') %>
       <h3 class="pageheading">My profile</h5>
       <form class="w-25" method="POST" action="/profile/">
         <input class="hidden" type="hidden" name="id" value="<%= user.id %>">
