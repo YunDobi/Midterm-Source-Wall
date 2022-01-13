@@ -1,10 +1,14 @@
-<div class="list-group">
-  <% for(let cat of categories) { %>
-    <div class="list-group-item list-group-item-action">
-      <a href="/categories/<%= cat.id %>">
-        <h6 class="mb-1"><%= cat.name %></h6>
-      </a>
-      <small><%= cat.description %></small>
+<div class="vh-100 d-flex align-items-top justify-content-center mt-5" style="width: 200px;">
+  <div class="w-75">
+    <div class="list-group">
+      <% for(let cat of categories) { %>
+        <div class="list-group-item list-group-item-action">
+          <a href="/categories/<%= cat.id %>">
+            <h6 class="mb-1"><%= cat.name %></h6>
+          </a>
+          <small><%= cat.description %></small>
+        </div>
+      <% } %>
     </div>
-  <% } %>
+  </div>
 </div>
