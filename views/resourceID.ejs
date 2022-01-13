@@ -9,10 +9,15 @@
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/comment.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/resourceID.css" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  
 
 
   <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
   <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -21,93 +26,94 @@
 
 <body>
   <%- include('partials/header') %>
-  <h1>RESOURCE ID</h1>
-  
   <main>  
-
     <div class="container">
     <div class="containerID">
       <br></br>
       <div class="cards">
         <img class="images" src="https://www.w3schools.com/howto/img_avatar.png">
-        <div class="card-body">
-
-
-
-
-          <form id="rating" method="post" action="https://amp.dev/documentation/examples/interactivity-dynamic-content/star_rating/set" target="_blank"></form>
-            <fieldset class="rating">
-              <input name="rating" type="radio" id="rating5" value="5" on="change:rating.submit">
-              <label for="rating5" title="5 stars">☆</label>
+       
+          <h5 class="card-title"><%= title %>
+            <!-- this is the button to toggle the modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Category
+            </button>
           
-              <input name="rating" type="radio" id="rating4" value="4" on="change:rating.submit">
-              <label for="rating4" title="4 stars">☆</label>
+            <!-- this is the togle that will show up after the button -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Choose Category</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="/categories" method="post">
+                      <input type="hidden" name="resourceId" value="<%= resourceId %>">
+                      <% for(let cat in name) { %>   
+                    <button name="topic_id" value="<%= name[cat].id %>"><%= name[cat].name %></button>
+                      <% } %>
+                    </form>
+                    
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div></h5>
           
-              <input name="rating" type="radio" id="rating3" value="3" on="change:rating.submit">
-              <label for="rating3" title="3 stars">☆</label>
           
-              <input name="rating" type="radio" id="rating2" value="2" on="change:rating.submit">
-              <label for="rating2" title="2 stars">☆</label>
           
-              <input name="rating" type="radio" id="rating1" value="1" on="change:rating.submit">
-              <label for="rating1" title="1 stars">☆</label>
-            </fieldset>
-           
-              <template type="amp-mustache">
-                <p>Thanks for rating {{rating.value}} star(s)!</p>
-              </template>
-
-          </form>
-          <br></br>
-
-
-          <h5 class="card-title"><%= resource %></h5>
+          
           <div class="toggle">
-          <p class="card-text"><%= rating %></p>
+          <p class="card-text"><%= description %></p>
+          
+          <br></br>
+          <div class="card-body" id="feedback">
+            <div class="card-title">
+              <h3><%= like %></h3>
+              <form action="/resources/<%= id %>/like" method="post">
+                <button name="bth" value="<%= like %>">like it</button>
+              </form>
+              
+              
+            </div>
+            
 
-
-
-
-    
+            <div id="feddback-rating" class="card-title">
+              <h3><%= rating %>/5</h3>
+              <form id="rating" method="post" action="/resources/<%= id %>/rating">
+              <input type="text" name="rating" value="" placeholder="up to 5">
+              <button type="submit">rate</button>
+            </form>
+            </div>
           </div>
         </div>
       </div>
     
-    
-
-
       </div>
       <div class="commentcontainer">
         <br></br>
         <div class="cards">
-          <form class="field">
-          <textarea id="commenttext" name="w3review" rows="4" cols="50">
-            At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
-            </textarea>
-            <button class="commentbutton">Comment</button>
+          <form action="/resources/<%= id %>/comments" method="post" class="field">
+            <textarea name="inputBody" id="typebox" cols="50" rows="4" placeholder="Write your comments!"></textarea>
+            <button type="submit" class="commentbutton">submit</button>
           </form>
           <br></br>
-          <div class="card-body">
-            <h5 class="comment-text"><%= comment %></h5>
-            <br>
-            <div class="toggle">
-              <p class="comment-text"><%= comment %></p>
-              
+          
+          <% for(let i = 0; i < comments.length; i++) { %>
+            <div id="comment-body">
+              <p><%= comments[i].username %> </p>
+         <p><%= comments[i].comments %> </p>
             </div>
+            <% } %>
           </div>
         </div>
-      
-      
-  
-
         </div>
-
       </div>
-
-  </main>
-  
-  
-       
+  </main>     
 </body>
 
 </html>
