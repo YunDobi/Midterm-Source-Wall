@@ -36,7 +36,7 @@
           <h5 class="card-title"><%= title %>
             <!-- this is the button to toggle the modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              Launch demo modal
+              Category
             </button>
           
             <!-- this is the togle that will show up after the button -->
@@ -44,13 +44,16 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Choose Category</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <button>this</button>
-                    <button>is</button>
-                    <button>category</button>
+                    <form action="/categories" method="post">
+                      <% for(let cat in name) { %>
+                    <button name="name_bth" value="<%= name[cat].name %>"><%= name[cat].name %></button>
+                    <% } %>
+                    </form>
+                    
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -27,15 +27,23 @@ module.exports = (db) => {
       .then((response) => {
         const allResources = response.rows;
         db.query(`SELECT * FROM categories WHERE user_id = 1`)
-        .then((catResponse) => {
-          //console.log(catResponse.rows)
-          res.render('category', {
-            categories: catResponse.rows,
-            urls: allResources
+          .then((catResponse) => {
+            //console.log(catResponse.rows)
+            res.render('category', {
+              categories: catResponse.rows,
+              urls: allResources
+            });
           });
-        });
       });
   });
-
+  
+  router.post('/', (req, res) => {
+    console.log(req.params.id)
+    db.query('INSERT INTO categories (name, description, user_id) VALUES ($1,$2,$3)',[req.body.name_bth, 'This is description', 1])
+    .then(() => {
+      res.redirect('/')
+    });
+  });
+    
   return router;
 };
