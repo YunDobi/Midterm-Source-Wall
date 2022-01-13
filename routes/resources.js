@@ -10,13 +10,13 @@ const resources = (db) => {
       .then((response) => {
         const allResources = response.rows;
         db.query(`SELECT * FROM categories WHERE user_id = 1`)
-        .then((catResponse) => {
-          console.log(catResponse.rows)
-          res.render('home', {
-            categories: catResponse.rows,
-            urls: allResources
+          .then((catResponse) => {
+            console.log(catResponse.rows)
+            res.render('home', {
+              categories: catResponse.rows,
+              urls: allResources
+            });
           });
-        });
       });
   });
 
@@ -96,12 +96,10 @@ const resources = (db) => {
                       rating: Math.round(avgRating),
                       id: req.params.id,
                     };
-                    console.log("allSources",allSources)
+                    console.log("allSources",allSources);
                     res.render('resourceID', allSources);
                   });
               });
-
-            
           });
       });
   });
