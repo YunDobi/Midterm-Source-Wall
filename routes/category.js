@@ -18,6 +18,14 @@ module.exports = (db) => {
         res.json(categories);
       });
   });
+  
+  router.post('/', (req, res) => {
+    // console.log('++++++',req.body);
+    db.query('INSERT INTO resourcescategories (resource_id, category_id) VALUES ($1,$2)',[req.body.resourceId, req.body.topic_id])
+      .then(() => {
+        res.redirect('/');
+      });
+  });
 
   router.get('/:catid', (req, res) => {
     db.query(`SELECT resources.id, resources.user_id, resources.url, resources.title, resources.description,
@@ -26,17 +34,17 @@ module.exports = (db) => {
     WHERE resourcescategories.category_id = ${req.params.catid};`)
       .then((response) => {
         const allResources = response.rows;
+
         const user_id = req.session.user_id;
         db.query(`SELECT * FROM categories WHERE user_id = ${user_id}`)
-        .then((catResponse) => {
-          //console.log(catResponse.rows)
-          res.render('category', {
-            categories: catResponse.rows,
-            urls: allResources
+          .then((catResponse) => {
+            //console.log(catResponse.rows)
+            res.render('category', {
+              categories: catResponse.rows,
+              urls: allResources
+            });
           });
-        });
       });
   });
-
   return router;
 };
