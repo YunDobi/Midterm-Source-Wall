@@ -26,13 +26,14 @@ module.exports = (db) => {
     WHERE resourcescategories.category_id = ${req.params.catid};`)
       .then((response) => {
         const allResources = response.rows;
-        db.query(`SELECT * FROM categories WHERE user_id = 1`)
-          .then((catResponse) => {
-            //console.log(catResponse.rows)
-            res.render('category', {
-              categories: catResponse.rows,
-              urls: allResources
-            });
+
+        const user_id = req.session.user_id;
+        db.query(`SELECT * FROM categories WHERE user_id = ${user_id}`)
+        .then((catResponse) => {
+          //console.log(catResponse.rows)
+          res.render('category', {
+            categories: catResponse.rows,
+            urls: allResources
           });
       });
   });

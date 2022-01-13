@@ -9,12 +9,14 @@ const resources = (db) => {
     db.query('SELECT * FROM resources;')
       .then((response) => {
         const allResources = response.rows;
-        db.query(`SELECT * FROM categories WHERE user_id = 1`)
-          .then((catResponse) => {
-            res.render('home', {
-              categories: catResponse.rows,
-              urls: allResources
-            });
+
+        const user_id = req.session.user_id;
+        db.query(`SELECT * FROM categories WHERE user_id = ${user_id}`)
+        .then((catResponse) => {
+          console.log(catResponse.rows)
+          res.render('home', {
+            categories: catResponse.rows,
+            urls: allResources
           });
       });
   });
@@ -104,6 +106,7 @@ const resources = (db) => {
                       });
                   });
               });
+
           });
       });
   });

@@ -21,6 +21,14 @@ db.connect(
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan("dev"));
 
+// use cookieSession to store login
+const cookieSession = require('cookie-session')
+app.use(cookieSession({
+  name: 'session',
+  keys: [ "mysecretkey1", "mysecretkey2"],
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}))
+
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
@@ -44,6 +52,7 @@ const resourecesRoute = require("./routes/resources");
 const myresourcesRoute = require('./routes/myresource');
 const searchRoute = require("./routes/search");
 const profileRoute = require("./routes/profile");
+const authRoute = require("./routes/auth");
 const homeRoute = require("./routes/home");
 
 // Mount all resource routes
@@ -55,6 +64,7 @@ app.use("/resources", resourecesRoute(db));
 app.use("/myresource", myresourcesRoute(db));
 app.use("/search", searchRoute(db));
 app.use("/profile", profileRoute(db));
+app.use("/auth", authRoute(db));
 app.use("/", homeRoute(db));
 
 

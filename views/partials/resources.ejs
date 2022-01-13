@@ -1,0 +1,14 @@
+<div class="d-flex flex-wrap">
+  <% for(let url of urls) { %>
+    <div class="cards">
+      <a href="/resources/<%= url.id %>">
+      <img class="images" src="https://www.w3schools.com/howto/img_avatar.png">
+      <div class="card-body">
+        <h5 class="card-title"><%= url.title %></h5>
+        <div class="toggle">
+          <p class="card-text"><%= url.description %></p>
+        </div>
+      </div>
+    </div>
+  <% } %>
+</div>
