@@ -29,22 +29,21 @@ module.exports = (db) => {
 
         const user_id = req.session.user_id;
         db.query(`SELECT * FROM categories WHERE user_id = ${user_id}`)
-        .then((catResponse) => {
-          //console.log(catResponse.rows)
-          res.render('category', {
-            categories: catResponse.rows,
-            urls: allResources
+          .then((catResponse) => {
+            //console.log(catResponse.rows)
+            res.render('category', {
+              categories: catResponse.rows,
+              urls: allResources
+            });
           });
       });
-  });
   
-  router.post('/', (req, res) => {
-    console.log(req.params.id)
-    db.query('INSERT INTO categories (name, description, user_id) VALUES ($1,$2,$3)',[req.body.name_bth, 'This is description', 1])
-    .then(() => {
-      res.redirect('/')
+    router.post('/', (req, res) => {
+      db.query('INSERT INTO categories (name, description, user_id) VALUES ($1,$2,$3)',[req.body.name_bth, 'This is description', 1])
+        .then(() => {
+          res.redirect('/');
+        });
     });
+    return router;
   });
-    
-  return router;
 };
