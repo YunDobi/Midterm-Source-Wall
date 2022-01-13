@@ -33,17 +33,26 @@ const resources = (db) => {
   //comments
   router.post('/:id/comments', (req, res) => {
     console.log("++++++", req.body);
-    db.query('INSERT INTO comments (comments, user_id, resource_id) VALUES ($1,$2,$3)',[req.body.inputBody, req.params.user_id, req.params.id])
+    db.query('INSERT INTO comments (comments, user_id, resource_id) VALUES ($1,$2,$3)',[req.body.inputBody, 1, req.params.id])
       .then(() => {
         res.redirect('/');
       });
   });
 
   //like
-  router.post('/like', (req, res) => {
-    db.query('UPDATE feedbacks SET likes = $1 where $2;' , [req.params.likes, req.params.id])
+  router.post('/:id/like', (req, res) => {
+
+    db.query('UPDATE feedbacks SET likes = $1 where resource_id = $2;' , [Number(req.body.bth) + 1, req.params.id])
       .then(() => {
-        res.redirect('/response/:id');
+        res.redirect('/');
+      });
+  });
+
+  //rating
+  router.post('/:id/rating', (req, res) => {
+    db.query('INSERT INTO feedbacks (likes ,rating, user_id, resource_id) values ($1,$2, $3, $4);', [0, req.body.rating, 1, req.params.id])
+      .then(() => {
+        res.redirect('/response/');
       });
   });
 
@@ -56,23 +65,37 @@ const resources = (db) => {
         // res.json(response.rows[0]);
         const resource = response.rows[0];
 
-        db.query('SELECT * FROM comments WHERE resource_id = $1;', [req.params.id])
+        db.query('SELECT *, users.name as username FROM comments JOIN users on user_id = users.id WHERE resource_id = $1;', [req.params.id])
           .then((response) => {
+            // console.log(response.rows)
             const comments = response.rows;
             // res.json({ resource, comments });
 
-            db.query('SELECT likes, rating from feedbacks JOIN resources ON resources.id = resource_id WHERE resource_id = $1;', [req.params.id])
-              .then((response) => {
-                const likeRating = response.rows[0];
-                const allSources = {
-                  resource: JSON.stringify(resource.title),
-                  comment: JSON.stringify(comments),
-                  like :JSON.stringify(likeRating.likes),
-                  rating: JSON.stringify(likeRating.rating),
-                  id: req.params.id
-                };
-                res.render('resourceID', allSources);
+
+            db.query(`SELECT avg(rating) FROM feedbacks WHERE resource_id = $1;`,[req.params.id])
+              .then((response)=>{
+                const avgRating = response.rows[0].avg;
+
+
+                db.query('SELECT likes, rating from feedbacks JOIN resources ON resources.id = resource_id WHERE resource_id = $1;', [req.params.id])
+                  .then((response) => {
+                    // console.log("++++",comments)
+                    const likeRating = response.rows[0];
+                    const allSources = {
+                      title: JSON.stringify(resource.title),
+                      description: JSON.stringify(resource.description),
+                      comments: comments,
+                      username: JSON.stringify(comments.username),
+                      like :JSON.stringify(likeRating.likes),
+                      rating: Math.round(avgRating),
+                      id: req.params.id,
+                    };
+                    console.log("allSources",allSources)
+                    res.render('resourceID', allSources);
+                  });
               });
+
+            
           });
       });
   });
