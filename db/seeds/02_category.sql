@@ -4,4 +4,6 @@ INSERT INTO categories (name, description, user_id) VALUES ('auto', 'cars, vans,
 INSERT INTO categories (name, description, user_id) VALUES ('game', 'checker, chess, uno', 1);
 INSERT INTO categories (name, description, user_id) VALUES ('animal', 'dogs, cats, bears, mooses', 1);
 INSERT INTO categories (name, description, user_id) VALUES ('game', 'it is game', 2);
+INSERT INTO categories (name, description, user_id) VALUES ('football', 'best sport', 2);
 INSERT INTO categories (name, description, user_id) VALUES ('minecraft', 'it is minecraft!', 3);
+INSERT INTO categories (name, description, user_id) VALUES ('e-sport', 'best sport', 3);
