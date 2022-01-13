@@ -59,7 +59,7 @@ const resources = (db) => {
     router.post('/:id/rating', (req, res) => {
       db.query('INSERT INTO feedbacks (likes ,rating, user_id, resource_id) values ($1,$2, $3, $4);', [0, req.body.rating, 1, req.params.id])
         .then(() => {
-          res.redirect('/response/');
+          res.redirect(`/resources/${req.params.id}`);
         });
     });
 
