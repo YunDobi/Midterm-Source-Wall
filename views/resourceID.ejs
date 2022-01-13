@@ -49,9 +49,10 @@
                   </div>
                   <div class="modal-body">
                     <form action="/categories" method="post">
-                      <% for(let cat in name) { %>
-                    <button name="name_bth" value="<%= name[cat].name %>"><%= name[cat].name %></button>
-                    <% } %>
+                      <input type="hidden" name="resourceId" value="<%= resourceId %>">
+                      <% for(let cat in name) { %>   
+                    <button name="topic_id" value="<%= name[cat].id %>"><%= name[cat].name %></button>
+                      <% } %>
                     </form>
                     
                   </div>
