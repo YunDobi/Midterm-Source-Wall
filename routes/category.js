@@ -18,12 +18,20 @@ module.exports = (db) => {
         res.json(categories);
       });
   });
-  
+
   router.post('/', (req, res) => {
     // console.log('++++++',req.body);
     db.query('INSERT INTO resourcescategories (resource_id, category_id) VALUES ($1,$2)',[req.body.resourceId, req.body.topic_id])
       .then(() => {
         res.redirect(`/resources/${req.body.resourceId}`);
+      });
+  });
+
+  router.post('/new', (req, res) => {
+    db.query('INSERT INTO categories (name, description, user_id) VALUES ($1,$2,$3)',
+      [req.body.name, req.body.description, req.session.user_id])
+      .then(() => {
+        res.redirect(`/`);
       });
   });
 
