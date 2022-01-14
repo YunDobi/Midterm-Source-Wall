@@ -11,7 +11,7 @@ const router  = express.Router();
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
-    res.redirect("/resources");
+    res.redirect("/auth/login/1");
   });
 
   return router;

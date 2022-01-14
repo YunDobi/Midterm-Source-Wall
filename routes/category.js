@@ -23,7 +23,7 @@ module.exports = (db) => {
     // console.log('++++++',req.body);
     db.query('INSERT INTO resourcescategories (resource_id, category_id) VALUES ($1,$2)',[req.body.resourceId, req.body.topic_id])
       .then(() => {
-        res.redirect(`/resources/${req.body.resourceId}`);
+        res.redirect(`/resources`);
       });
   });
 

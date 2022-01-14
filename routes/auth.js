@@ -17,7 +17,7 @@ module.exports = (db) => {
         if (response && response.rows.length > 0) {
           console.log('redirect');
           req.session.user_id = response.rows[0].id;
-          res.redirect('/');
+          res.redirect('/resources');
         } else throw Error("No user.");
       }).catch(err => {
         console.log("Caught exception: " + err.message)
