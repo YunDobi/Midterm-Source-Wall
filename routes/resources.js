@@ -73,7 +73,7 @@ const resources = (db) => {
 
     //see each resource one by one
     router.get('/:id', (req, res) => {
-      console.log(req.params.id)
+      const userId = req.session.user_id;
       db.query('SELECT * FROM resources WHERE id = $1;', [req.params.id])
         .then((response)=> {
           // res.json(response.rows[0]);
@@ -90,11 +90,11 @@ const resources = (db) => {
                 .then((response)=>{
                   const avgRating = response.rows[0].avg;
 
-                  db.query('SELECT * FROM categories;')
+                  db.query('SELECT * FROM categories WHERE user_id = $1;', [userId])
                     .then((response)=> {
                       console.log(req.params)
                       const categories = response.rows;
-                      console.log(Number(req.params.id))
+
 
                       db.query('SELECT likes, rating from feedbacks JOIN resources ON resources.id = resource_id WHERE resource_id = $1;', [req.params.id])
                         .then((response) => {
