@@ -7,7 +7,7 @@
   text-align: center;
   border-radius: 20px;
   border: #a3c5db;
-  
+
 }
 
 
@@ -37,7 +37,7 @@ form {
 
 .container{
   background-image: linear-gradient(
-    253.58deg, #2fc0ee 1.55%, #f17bd0 95.8%); 
+    253.58deg, #2fc0ee 1.55%, #f17bd0 95.8%);
     border-radius: 15px;
     width: auto;
     height: auto;
@@ -47,7 +47,7 @@ form {
 }
 
 
-  
+
 .cards {
   border: 4px solid #F3F7FF;
   background: transparent;
@@ -56,7 +56,7 @@ form {
   padding: 20px 0px 20px 0px;
   border-radius: 0px 35px;
   width: 26%;
- 
+
 
   a.nav-link {
     position: absolute;
@@ -65,7 +65,7 @@ form {
     text-align: right;
   }
 }
-    
+
 .cards:hover {
   /* background: #ecdbff; */
   -webkit-box-shadow: 10px 10px 10px -9px rgba(0,0,0,0.75);
@@ -83,31 +83,17 @@ form {
 }
 
 .card-body {
-  
+
 
   p {
     font-size: .8em;
   }
 }
 
-.card-title {
-  
-    font-family: fantasy;
-    font-size: 30px;
-    text-decoration: underline;
-}
-.card-text{
-  font-family: fantasy;
-  padding: 9px;
-  border:1px solid #F3F7FF;
-  border-radius: 20px;
-
-}
-  
 
 .images{
   width:101%;
   height:200px;
   border: 31px solid #F3F7FF;
- 
+
 }
