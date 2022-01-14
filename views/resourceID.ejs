@@ -31,7 +31,8 @@
     <div class="containerID">
       <br></br>
       <div class="cards">
-        <img class="images" src="https://www.w3schools.com/howto/img_avatar.png">
+        
+        <a  href="<%= url %>" > <img class="images" src="https://www.w3schools.com/howto/img_avatar.png"> </a>
        
           <h5 class="card-title"><%= title %>
             <!-- this is the button to toggle the modal -->
@@ -63,9 +64,11 @@
                 </div>
               </div>
             </div></h5>
-   
+          
+            <br></br>
           <div class="toggle">
           <p class="card-text"><%= description %></p>
+          <p class="card-text">url: <%= url %></p>
           
           <br></br>
           <div class="card-body" id="feedback">
@@ -75,7 +78,9 @@
                 <button name="bth" value="<%= like %>">like it</button>
               </form>
               
+              
             </div>
+            
 
             <div id="feddback-rating" class="card-title">
               <h3><%= rating %>/5</h3>
@@ -103,12 +108,17 @@
               <p><%= comments[i].username %> </p>
          <p><%= comments[i].comments %> </p>
             </div>
+         
+          
             <% } %>
           </div>
         </div>
         </div>
+
       </div>
-  </main>     
+
+  </main>
+       
 </body>
 
 </html>
