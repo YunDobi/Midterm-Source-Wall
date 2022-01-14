@@ -105,6 +105,7 @@ const resources = (db) => {
                           const allSources = {
                             resourceId: resource.id,
                             title: JSON.stringify(resource.title),
+                            url: resource.url,
                             description: JSON.stringify(resource.description),
                             comments: comments,
                             username: JSON.stringify(comments.username),
