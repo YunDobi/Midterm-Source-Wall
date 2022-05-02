@@ -1,6 +1,10 @@
 LHL Node Skeleton
 =========
 
+# ScreenShot
+
+![alt_text](https://github.com/YunDobi/Resource-Wall/blob/master/doc/Screen%20Shot%202022-05-01%20at%206.10.02%20PM.png)
+
 ## Project Setup
 
 The following steps are only for _one_ of the group members to perform.
